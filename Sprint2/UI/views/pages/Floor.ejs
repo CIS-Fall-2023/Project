@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        <div>
+            <!-- CRUD operations for floor -->
+            <!-- Add Floor -->
+            <form action="/Floor" method="post">
+                <h2>Add Floor</h2>
+                <div class="form-group">
+                    <label for="id" class="form-label">Floor ID</label>
+                    <input type="text" id="id" name="id" class="form-control" placeholder="Floor ID" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="level" class="form-label">Level</label>
+                    <input type="text" id="level" name="level" class="form-control" placeholder="Level" required>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Name" required>
+                </div>
+                <input class="btn btn-lg btn-primary btn-block" type="submit" value="Add Floor">
+            </form>
+
+            <!-- View All Floors -->
+            <h2>All Floors</h2>
+            <% if (floors && floors.length > 0) { %>
+                <ul>
+                    <% floors.forEach(floor => { %>
+                        <li>ID: <%= floor.id %>, Level: <%= floor.level %>, Name: <%= floor.name %></li>
+                    <% }); %>
+                </ul>
+            <% } else { %>
+                <p>No floors found.</p>
+            <% } %>
+
+            <!-- Delete Floor -->
+            <form action="/Floor" method="delete">
+                <h2>Delete Floor</h2>
+                <div class="form-group">
+                    <label for="id" class="form-label">Floor ID to Delete</label>
+                    <input type="text" id="id" name="id" class="form-control" placeholder="Floor ID to Delete" required>
+                </div>
+                <input class="btn btn-lg btn-danger btn-block" type="submit" value="Delete Floor">
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>

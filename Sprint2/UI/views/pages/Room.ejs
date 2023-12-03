@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        <div>
+            <!-- CRUD operations for room -->
+            <!-- Add Room -->
+            <form action="/Room" method="post">
+                <h2>Add Room</h2>
+                <div class="form-group">
+                    <label for="id" class="form-label">Room ID</label>
+                    <input type="text" id="id" name="id" class="form-control" placeholder="Room ID" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="capacity" class="form-label">Capacity</label>
+                    <input type="text" id="capacity" name="capacity" class="form-control" placeholder="Capacity" required>
+                </div>
+                <div class="form-group">
+                    <label for="number" class="form-label">Number</label>
+                    <input type="text" id="number" name="number" class="form-control" placeholder="Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="floor" class="form-label">Floor</label>
+                    <input type="text" id="floor" name="floor" class="form-control" placeholder="Floor" required>
+                </div>
+                <input class="btn btn-lg btn-primary btn-block" type="submit" value="Add Room">
+            </form>
+
+            <!-- View All Rooms -->
+            <h2>All Rooms</h2>
+            <% if (rooms && rooms.length > 0) { %>
+                <ul>
+                    <% rooms.forEach(room => { %>
+                        <li>ID: <%= room.id %>, Capacity: <%= room.capacity %>, Number: <%= room.number %>, Floor: <%= room.floor %></li>
+                    <% }); %>
+                </ul>
+            <% } else { %>
+                <p>No rooms found.</p>
+            <% } %>
+
+            <!-- Delete Room -->
+            <form action="/Room" method="delete">
+                <h2>Delete Room</h2>
+                <div class="form-group">
+                    <label for="idToDelete" class="form-label">Room ID to Delete</label>
+                    <input type="text" id="idToDelete" name="idToDelete" class="form-control" placeholder="Room ID to Delete" required>
+                </div>
+                <input class="btn btn-lg btn-danger btn-block" type="submit" value="Delete Room">
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>
